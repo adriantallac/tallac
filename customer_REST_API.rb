@@ -1,13 +1,13 @@
 require "cloud_service"
 
-url = 'http://www.api.tallac.com/oauth/token'
+url = ' https://api-staging.tallac.com/api/oauth/token'
 # uri = URI.parse(uri)
 
 model = nil
 
 params = {
-	customer id => mpd@tallac.com
-	customer secret = runs77@slap
+	id => tallac
+	secret => tallac
 }
 
 #resp = Net::HTTP.post_form(url,params)
