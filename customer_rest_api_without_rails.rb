@@ -91,7 +91,7 @@ class CloudService
                         rescue RestClient::Exception => e
 				puts "Rails.logger.error e"                                
 				#Rails.logger.error e
-                                #return e.response
+                                return e.response
 				return nil
                         end                
                         resource.post( params.to_json ) do |response, request, result, &block|
@@ -169,7 +169,7 @@ class CloudService
 end
 	                
 
-url = ' https://api-staging.tallac.com/api/oauth/token'
+url = 'https://api-staging.tallac.com/api/oauth/token'
 
 model = nil
 
@@ -178,7 +178,7 @@ params = {
         :secret => 'tallac'
 }
 
-resp = Cloudservice::post(url,model,params)
+resp = CloudService.post(url,model,params)
 
 resp_text = resp.body
 
