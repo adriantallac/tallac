@@ -122,7 +122,7 @@ class CloudService
 					CloudService.token = nil
 					post( path, model, params )
 				else
-					puts.error "CloudService::POST Error - #{response.body}"
+					puts "CloudService::POST Error - #{response.body}"
 				end
  
 				return response
