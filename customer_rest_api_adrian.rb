@@ -12,8 +12,6 @@ params = {
         :secret => 'ABCDE'
 }
 
-model = nil
-
 class Token
  
 	attr_reader :access_token, :expiration
@@ -106,7 +104,7 @@ class CloudService
 			end
 		end
  
-		def post( path, model, params )
+		def post( path, params )
 			begin 
 				resource = RestClient::Resource.new( create_uri( path ), auth_headers )
 			rescue RestClient::Exception => e
@@ -116,7 +114,7 @@ class CloudService
 			resource.post( params.to_json ) do |response, request, result, &block|
 				case response.code
 				when 200..207
-					model.update_attributes( cloud_path: response.headers[ :location ] )
+					puts "Post was successful"
 				when 401
 					puts "CloudService::POST - token expired, re-upping now"
 					CloudService.token = nil
@@ -196,7 +194,7 @@ def main
 	puts "================================================================================================================== "	
 	CloudService.get( '/api/access-group/1018244782635993037010', false )
 	puts "================================================================================================================== "	
-	#CloudService.post( '/api/access-group/1018244782635993037010', 'model','params' )	
+	#CloudService.post( '/api/access-group/1018244782635993037010','params' )	
 	puts "================================================================================================================== "
 	CloudService.get( '/api/access-group/1018244782635993037010/log?start_time=2014-01-16T10:00:00.000Z&end_time=2014-01-17T00:00:10.000Z', false )
 	puts "================================================================================================================== "
